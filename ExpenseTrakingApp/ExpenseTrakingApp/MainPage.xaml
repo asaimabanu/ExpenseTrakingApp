@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:ExpenseTrakingApp.Models"
+             x:Class="ExpenseTrakingApp.MainPage">
+
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="BUDGET TRACKING APP" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label x:Name="AmountSpent" HorizontalTextAlignment="Center" TextColor="White" FontSize="24"/>
+        </Frame>
+        <Editor x:Name="MonthlyGoal" 
+                    Placeholder="Enter Your Monthly Goal" 
+                    HeightRequest="50"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <Button Text="Save" Clicked="MonthlyGoalSaveButton_Clicked"/>
+        <ListView x:Name="ExpenseListView"
+                  Margin="10"
+                  ItemSelected="ExpenseListView_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:ExpenseDetail">
+                    <TextCell Text="{Binding Text}" Detail ="{Binding Date}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="New" Clicked="NewExpense_Clicked"/>
+    </StackLayout>
+
+</ContentPage>
