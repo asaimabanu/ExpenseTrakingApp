@@ -11,10 +11,35 @@
             <Editor x:Name="Amount" 
                     Placeholder="Amount" 
                     HeightRequest="70"/>
-            <Editor x:Name="Category"
-                    Placeholder="Category"
+
+            <StackLayout>
+                
+            </StackLayout>
+            <Editor x:Name="Category" Placeholder="Category"
                     HeightRequest="70"/>
-            <DatePicker x:Name ="ExpenseDate" MinimumDate="01/01/2018"
+            <Picker x:Name="CategoryPicker"
+                    Title="Select a Category"
+                    TitleColor="Blue"
+                    SelectedIndexChanged="CategoryPicker_SelectedIndexChanged"
+                    >
+
+               
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String >Groceries</x:String>
+                        <x:String >Shopping</x:String>
+                        <x:String >Rent</x:String>
+                        <x:String >Auto</x:String>
+                        <x:String >Education</x:String>
+                        <x:String >Others</x:String>
+                        
+                    </x:Array>
+                </Picker.ItemsSource>
+                
+               
+            </Picker>
+            <Label Text="{Binding Source={x:Reference CategoryPicker}, Path=SelectedItem}" />
+            <DatePicker x:Name ="ExpenseDate" MinimumDate="01/01/2023"
             MaximumDate="12/31/2023"
             Date="3/28/2023" />
             
