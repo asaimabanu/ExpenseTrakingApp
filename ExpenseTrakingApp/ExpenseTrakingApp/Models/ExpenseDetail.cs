@@ -19,7 +19,6 @@ namespace ExpenseTrakingApp.Models
         public string Name { get; set; }
         public string Amount { get; set; }
         public DateTime Date { get; set; }
-        //public ECategory Category { get; set; }
         public string Category { get; set; }
 
         public string FileName { get; set; }

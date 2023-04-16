@@ -8,7 +8,7 @@ namespace ExpenseTrakingApp.Models
     {
         public string BudgetFileName { get; set; }
         public DateTime BudgetDate { get; set;}
-        public double BudgetAmount { get; set;}
+        public decimal BudgetAmount { get; set;}
 
 
     }

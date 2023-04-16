@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ExpenseTrakingApp.Models;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace ExpenseTrakingApp
@@ -17,10 +18,21 @@ namespace ExpenseTrakingApp
         {
             InitializeComponent();
         }
+        static string category1;
         protected override void OnAppearing()
         {
             var expense=(ExpenseDetail)BindingContext;
-            if(expense!=null&&!string.IsNullOrEmpty(expense.FileName))
+            var categoryList = new List<string>();
+            categoryList.Add("Groceries");
+            categoryList.Add("Shopping");
+            categoryList.Add("Rent");
+            categoryList.Add("Auto");
+            categoryList.Add("Education");
+            categoryList.Add("Others");
+
+            var CategoryPicker = new Xamarin.Forms.Picker { Title = "Select a Category", TitleColor = Color.Blue };
+            CategoryPicker.ItemsSource = categoryList;
+            if (expense!=null&&!string.IsNullOrEmpty(expense.FileName))
             {
                var content = (File.ReadAllText(expense.FileName));
                var contentarray=content.Split(' ');
@@ -31,14 +43,35 @@ namespace ExpenseTrakingApp
                 //Name.Text = File.ReadAllText(expense.FileName);
                 //Name.Text=
             }
+
+       
+
+            
+
+            //var categoryNameLabel=new Label();
+          //categoryNameLabel.SetBinding(Label.TextProperty,new Binding("SelectedItem",source: CategoryPicker));
+           
+
+
+
+
+
         }
         private void ExpenseSaveButtonClicked(object sender, EventArgs e)
         {
             var expense = (ExpenseDetail)BindingContext;
-            expense.Name = Name.Text;
+            expense.Name = (Name.Text).Trim();
             expense.Amount = Amount.Text;
-            expense.Category = Category.Text;
+            expense.Category= Category.Text;
+           //var decimal checked= Convert.ToDecimal(Amount.Text);
+            
+            //var categoryNameLabel = new Label();
+            
+            //categoryNameLabel.SetBinding(Label.TextProperty, new Binding("SelectedItem", source: CategoryPicker));
+            //expense.Category = categoryNameLabel.Text;
+            
             expense.Date = ExpenseDate.Date;
+            
             if (string.IsNullOrEmpty(expense.FileName))
             {
                 
@@ -61,6 +94,18 @@ namespace ExpenseTrakingApp
             Navigation.PopModalAsync();
         }
 
-       
+        private void CategoryPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            var categoryNameLabel = new Label();
+
+            categoryNameLabel.SetBinding(Label.TextProperty, new Binding("SelectedItem", source: CategoryPicker));
+
+            Category.Text = categoryNameLabel.Text;
+
+
+        }
+
+        
     }
 }
