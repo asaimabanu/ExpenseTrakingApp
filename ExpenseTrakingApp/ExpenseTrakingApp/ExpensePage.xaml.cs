@@ -60,12 +60,15 @@ namespace ExpenseTrakingApp
         private void ExpenseSaveButtonClicked(object sender, EventArgs e)
         {
             var expense = (ExpenseDetail)BindingContext;
-            expense.Name = Name.Text;
+            expense.Name = (Name.Text).Trim();
             expense.Amount = Amount.Text;
-            var categoryNameLabel = new Label();
+            expense.Category= Category.Text;
+           //var decimal checked= Convert.ToDecimal(Amount.Text);
             
-            categoryNameLabel.SetBinding(Label.TextProperty, new Binding("SelectedItem", source: CategoryPicker));
-            expense.Category = categoryNameLabel.Text;
+            //var categoryNameLabel = new Label();
+            
+            //categoryNameLabel.SetBinding(Label.TextProperty, new Binding("SelectedItem", source: CategoryPicker));
+            //expense.Category = categoryNameLabel.Text;
             
             expense.Date = ExpenseDate.Date;
             
