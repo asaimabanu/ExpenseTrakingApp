@@ -73,7 +73,7 @@ namespace ExpenseTrakingApp
                 expenses.Add(expense);
 
                 var content=File.ReadAllText(file);
-                var contentarray = content.Split(' ');
+                var contentarray = content.Split('|');
                 amount = Int32.Parse(contentarray[1]);
                TotalAmount.Add(amount);
                 
