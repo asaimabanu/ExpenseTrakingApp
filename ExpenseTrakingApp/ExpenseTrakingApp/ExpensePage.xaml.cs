@@ -35,7 +35,7 @@ namespace ExpenseTrakingApp
             if (expense!=null&&!string.IsNullOrEmpty(expense.FileName))
             {
                var content = (File.ReadAllText(expense.FileName));
-               var contentarray=content.Split(' ');
+                var contentarray = content.Split('|');
                 Name.Text = contentarray[0];
                 Amount.Text = contentarray[1];
                 Category.Text= contentarray[2];
@@ -78,7 +78,7 @@ namespace ExpenseTrakingApp
                 expense.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                     $"{Path.GetRandomFileName()}.notes.txt");
             }
-            File.WriteAllText(expense.FileName, expense.Name+" "+expense.Amount+" "+expense.Category+" " +(expense.Date).ToShortDateString());
+            File.WriteAllText(expense.FileName, expense.Name+"|"+expense.Amount+"|"+expense.Category+"|"+(expense.Date).ToShortDateString());
             Navigation.PopModalAsync();
 
         }
