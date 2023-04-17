@@ -46,12 +46,18 @@ namespace ExpenseTrakingApp
 
             }
             //decimal TotalBudgetAmount1 = TotalBudgetAmount.Sum();
+            if (TotalBudgetAmount.Count == 0)
+            {
+                Budget.Text = "BUDGET  0";
+            }
+            else
+            {
+                decimal TotalBudgetAmount1 = TotalBudgetAmount.Last();
+                var b = TotalBudgetAmount1.ToString();
+                Budget.Text = "BUDGET  " + b;
+            }
 
-           decimal TotalBudgetAmount1 = TotalBudgetAmount.Last();
-            var b = TotalBudgetAmount1.ToString();
-            Budget.Text = "BUDGET  "+ b;
-
-                var expenses = new List<ExpenseDetail>();
+            var expenses = new List<ExpenseDetail>();
             var TotalAmount=new List<int>();
             var files = Directory.EnumerateFiles(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "*.notes.txt");
             int amount = 0;
